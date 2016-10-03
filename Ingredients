@@ -1,0 +1,16 @@
+
+public enum Ingredients 
+{
+	BACON("Bacon"),LETTUCE("Lettuce"),TOMATOE("Tomatoe");
+	
+	private final String name;
+	
+	private Ingredients(String name)
+	{
+		this.name = name;
+	}
+	public String getName()
+	{
+		return name;
+	}
+}
