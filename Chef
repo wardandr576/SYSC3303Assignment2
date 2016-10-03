@@ -1,0 +1,29 @@
+import java.util.ArrayList;
+
+public class Chef implements Runnable
+{
+	private Table table;
+	private Ingredients ingredient;
+	private ArrayList<Ingredients> missing;
+	
+	public Chef(Table table, Ingredients ingredient)
+	{
+		this.table = table;
+		this.ingredient = ingredient;
+	}
+	
+	public void run()
+	{
+		while(true)
+		{
+			
+		}
+		
+	}
+	public Ingredients getItem()
+	{
+		return ingredient;
+	}
+	
+
+}
