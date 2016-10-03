@@ -1,0 +1,57 @@
+import java.util.ArrayList;
+
+public class Table 
+{
+	public ArrayList<Ingredients> yummystuff = null;
+	public int sandwhiches = 0;
+	public boolean empty = true;
+	
+	public synchronized void put(ArrayList<Ingredients> items)
+	{
+		while(!empty)
+		{
+			try
+			{
+				wait();
+			}
+			catch(InterruptedException e)
+			{
+				return;
+			}
+			
+			yummystuff  = items;
+			empty = false;
+			notifyAll();
+		}
+	}
+	
+	public synchronized ArrayList<Ingredients> get(Ingredients i)
+	{
+		while(empty || yummystuff.contains(i))
+		{
+			try
+			{
+				wait();
+			}
+			catch(InterruptedException e)
+			{
+				return null;
+			}
+		}
+		ArrayList<Ingredients> items = yummystuff;
+		yummystuff = null;
+		empty = true;
+		notifyAll();
+		return items;
+	}
+	
+	public synchronized void sandwhichesmade()
+	{
+		sandwhiches++;
+	}
+	
+	public int getSandwhiches()
+	{
+		return sandwhiches;
+	}
+}
